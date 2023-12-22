@@ -1,8 +1,8 @@
 package com.example.ecommerce_bijouterie1.constants;
 
 public class SuccessMessage {
-    public static final String PERFUME_EDITED = "Bijoux successfully edited!";
-    public static final String PERFUME_ADDED = "Bijoux successfully added!";
+    public static final String Bijoux_EDITED = "Bijoux successfully edited!";
+    public static final String Bijoux_ADDED = "Bijoux successfully added!";
     public static final String PASSWORD_CODE_SEND = "Reset password code is send to your E-mail";
     public static final String PASSWORD_CHANGED = "Password successfully changed!";
     public static final String ACTIVATION_CODE_SEND = "Activation code has been sent to your email";

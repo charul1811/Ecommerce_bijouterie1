@@ -1,15 +1,15 @@
 package com.example.ecommerce_bijouterie1.controllers;
 
-import com.gmail.merikbest2015.ecommerce.constants.Pages;
-import com.gmail.merikbest2015.ecommerce.constants.PathConstants;
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.dto.request.OrderRequest;
-import com.gmail.merikbest2015.ecommerce.service.OrderService;
-import com.gmail.merikbest2015.ecommerce.service.UserService;
-import com.gmail.merikbest2015.ecommerce.utils.ControllerUtils;
+import com.example.ecommerce_bijouterie1.constants.Pages;
+import com.example.ecommerce_bijouterie1.constants.PathConstants;
+import com.example.ecommerce_bijouterie1.dto.request.OrderRequest;
+import com.example.ecommerce_bijouterie1.entities.User;
+import com.example.ecommerce_bijouterie1.services.OrderService;
+import com.example.ecommerce_bijouterie1.services.UserService;
+import com.example.ecommerce_bijouterie1.utils.ControllerUtils;
+import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,9 +17,6 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import javax.validation.Valid;
-
-@Controller
 @RequiredArgsConstructor
 @RequestMapping(PathConstants.ORDER)
 public class OrderController {
@@ -49,7 +46,7 @@ public class OrderController {
     @PostMapping
     public String postOrder(@Valid OrderRequest orderRequest, BindingResult bindingResult, Model model) {
         User user = userService.getAuthenticatedUser();
-        if (controllerUtils.validateInputFields(bindingResult, model, "perfumes", user.getPerfumeList())) {
+        if (controllerUtils.validateInputFields(bindingResult, model, "perfumes", user.getBijouxList())) {
             return Pages.ORDERING;
         }
         model.addAttribute("orderId", orderService.postOrder(user, orderRequest));

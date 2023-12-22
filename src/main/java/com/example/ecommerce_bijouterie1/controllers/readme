@@ -1,0 +1,8 @@
+controllers are used to:
+intercepting incoming requests
+converting the payload of the request to the internal structure of the data
+sending the data to Model for further processing
+getting processed data from the Model, and advancing that data to the View for rendering
+
+
+In short, Model to view is handled by controller which includes roles of conventional servlet

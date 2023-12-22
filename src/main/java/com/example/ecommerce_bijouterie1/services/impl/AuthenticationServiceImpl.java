@@ -1,12 +1,13 @@
 package com.example.ecommerce_bijouterie1.services.impl;
 
-import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
-import com.gmail.merikbest2015.ecommerce.constants.SuccessMessage;
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.dto.request.PasswordResetRequest;
-import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
-import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
-import com.gmail.merikbest2015.ecommerce.service.AuthenticationService;
+
+import com.example.ecommerce_bijouterie1.constants.ErrorMessage;
+import com.example.ecommerce_bijouterie1.constants.SuccessMessage;
+import com.example.ecommerce_bijouterie1.dto.request.PasswordResetRequest;
+import com.example.ecommerce_bijouterie1.dto.response.MessageResponse;
+import com.example.ecommerce_bijouterie1.entities.User;
+import com.example.ecommerce_bijouterie1.repositories.UserRepository;
+import com.example.ecommerce_bijouterie1.services.AuthenticationService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -46,6 +47,7 @@ public class AuthenticationServiceImpl implements AuthenticationService {
         return userRepository.getEmailByPasswordResetCode(code)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ErrorMessage.INVALID_PASSWORD_CODE));
     }
+
 
     @Override
     @Transactional

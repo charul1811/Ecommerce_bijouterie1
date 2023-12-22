@@ -10,7 +10,8 @@ import com.example.ecommerce_bijouterie1.repositories.OrderRepository;
 import com.example.ecommerce_bijouterie1.services.OrderService;
 import com.example.ecommerce_bijouterie1.services.UserService;
 import lombok.RequiredArgsConstructor;
-import org.modelmapper.ModelMapper;
+
+import org.springframework.ui.Model;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
@@ -28,7 +29,7 @@ public class OrderServiceImpl implements OrderService {
 
     private final UserService userService;
     private final OrderRepository orderRepository;
-    private final ModelMapper modelMapper;
+    private final Model modelMapper;
     private final MailService mailService;
 
     @Override
