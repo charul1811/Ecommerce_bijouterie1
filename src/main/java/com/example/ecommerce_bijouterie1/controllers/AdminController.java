@@ -1,15 +1,18 @@
-package com.gmail.merikbest2015.ecommerce.controller;
+package com.example.ecommerce_bijouterie1.controllers;
 
-import com.gmail.merikbest2015.ecommerce.constants.Pages;
-import com.gmail.merikbest2015.ecommerce.constants.PathConstants;
-import com.gmail.merikbest2015.ecommerce.dto.request.PerfumeRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
-import com.gmail.merikbest2015.ecommerce.dto.response.UserInfoResponse;
-import com.gmail.merikbest2015.ecommerce.service.AdminService;
-import com.gmail.merikbest2015.ecommerce.utils.ControllerUtils;
+
+import com.example.ecommerce_bijouterie1.constants.Pages;
+import com.example.ecommerce_bijouterie1.constants.PathConstants;
+import com.example.ecommerce_bijouterie1.dto.request.SearchRequest;
+import com.example.ecommerce_bijouterie1.services.AdminService;
+import com.example.ecommerce_bijouterie1.utils.ControllerUtils;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Configurable;
+import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
+import org.springframework.context.annotation.Configuration;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -23,20 +26,25 @@ import javax.validation.Valid;
 @RequestMapping(PathConstants.ADMIN)
 @PreAuthorize("hasAuthority('ADMIN')")
 @RequiredArgsConstructor
+@EnableAutoConfiguration
+@Configurable
+@Configuration
+@Component
 public class AdminController {
 
     private final AdminService adminService;
     private final ControllerUtils controllerUtils;
 
-    @GetMapping("/perfumes")
-    public String getPerfumes(Pageable pageable, Model model) {
-        controllerUtils.addPagination(model, adminService.getPerfumes(pageable));
-        return Pages.ADMIN_PERFUMES;
+    @GetMapping("/bijoux")
+    public String getBijoux(Pageable pageable, Model model) {
+       // controllerUtils.addPagination(model, adminService.getBijoux(pageable));
+        controllerUtils.addPagination(model,adminService.getBijoux(pageable));
+        return Pages.ADMIN_BIJOUX;
     }
 
-    @GetMapping("/perfumes/search")
-    public String searchPerfumes(SearchRequest request, Pageable pageable, Model model) {
-        controllerUtils.addPagination(request, model, adminService.searchPerfumes(request, pageable));
+    @GetMapping("bijoux/search")
+    public String searchBijoux(SearchRequest request, Pageable pageable, Model model) {
+        controllerUtils.addPagination(request, model, adminService.searchBijoux(request, pageable));
         return Pages.ADMIN_PERFUMES;
     }
 
@@ -60,7 +68,7 @@ public class AdminController {
 
     @GetMapping("/orders")
     public String getOrders(Pageable pageable, Model model) {
-        controllerUtils.addPagination(model, adminService.getOrders(pageable));
+        controllerUtils.addPagination(SearchRequest searchRequest,model, adminService.getOrders(pageable));
         return Pages.ORDERS;
     }
 
@@ -70,33 +78,33 @@ public class AdminController {
         return Pages.ORDERS;
     }
 
-    @GetMapping("/perfume/{perfumeId}")
-    public String getPerfume(@PathVariable Long perfumeId, Model model) {
-        model.addAttribute("perfume", adminService.getPerfumeById(perfumeId));
+    @GetMapping("/bijoux/{bijouxId}")
+    public String getBijoux(@PathVariable Long bijouxId, Model model) {
+        model.addAttribute("bijoux", adminService.getBijouxById(bijouxId));
         return Pages.ADMIN_EDIT_PERFUME;
     }
 
-    @PostMapping("/edit/perfume")
-    public String editPerfume(@Valid PerfumeRequest perfume, BindingResult bindingResult, Model model,
+    @PostMapping("/edit/bijoux")
+    public String editBijoux(@Valid BijouxRequest bijoux, BindingResult bindingResult, Model model,
                               @RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
-        if (controllerUtils.validateInputFields(bindingResult, model, "perfume", perfume)) {
+        if (controllerUtils.validateInputFields(bindingResult, model, "bijoux", bijoux)) {
             return Pages.ADMIN_EDIT_PERFUME;
         }
-        return controllerUtils.setAlertFlashMessage(attributes, "/admin/perfumes", adminService.editPerfume(perfume, file));
+        return controllerUtils.setAlertFlashMessage(attributes, "/admin/bijouxs", adminService.editBijoux(bijoux, file));
     }
 
-    @GetMapping("/add/perfume")
-    public String addPerfume() {
+    @GetMapping("/add/bijoux")
+    public String addBijoux() {
         return Pages.ADMIN_ADD_PERFUME;
     }
 
-    @PostMapping("/add/perfume")
-    public String addPerfume(@Valid PerfumeRequest perfume, BindingResult bindingResult, Model model,
+    @PostMapping("/add/bijoux")
+    public String addBijoux(@Valid BijouxRequest bijoux, BindingResult bindingResult, Model model,
                              @RequestParam("file") MultipartFile file, RedirectAttributes attributes) {
-        if (controllerUtils.validateInputFields(bindingResult, model, "perfume", perfume)) {
+        if (controllerUtils.validateInputFields(bindingResult, model, "bijoux", bijoux)) {
             return Pages.ADMIN_ADD_PERFUME;
         }
-        return controllerUtils.setAlertFlashMessage(attributes, "/admin/perfumes", adminService.addPerfume(perfume, file));
+        return controllerUtils.setAlertFlashMessage(attributes, "/admin/bijouxs", adminService.addBijoux(bijoux, file));
     }
 
     @GetMapping("/user/{userId}")

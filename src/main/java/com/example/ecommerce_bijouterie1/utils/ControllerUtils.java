@@ -1,13 +1,17 @@
-package com.gmail.merikbest2015.ecommerce.utils;
+package com.example.ecommerce_bijouterie1.utils;
 
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
-import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
+
+import com.example.ecommerce_bijouterie1.dto.request.SearchRequest;
+import com.example.ecommerce_bijouterie1.dto.response.MessageResponse;
+import com.example.ecommerce_bijouterie1.entities.Bijoux;
+import com.example.ecommerce_bijouterie1.entities.Order;
 import org.springframework.data.domain.Page;
 import org.springframework.stereotype.Component;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
 
 import java.util.*;
 import java.util.stream.Collector;
@@ -35,15 +39,18 @@ public class ControllerUtils {
         return false;
     }
 
-    public <T> void addPagination(Model model, Page<T> page) {
+
+
+ /*   private  <T> void addPagination(SearchRequest searchRequest, Model model, Page<T> page) {
+        model.addAttribute("searchRequest", searchRequest);
+        addPagination(model, (Page<Order>) page);
+    }
+*/
+   /* private <Order> void addPagination(Model model, Page<Order> page) {
         model.addAttribute("pagination", computePagination(page));
         model.addAttribute("page", page);
-    }
-
-    public <T> void addPagination(SearchRequest searchRequest, Model model, Page<T> page) {
-        model.addAttribute("searchRequest", searchRequest);
         addPagination(model, page);
-    }
+    }*/
 
     public String setAlertMessage(Model model, String page, MessageResponse messageResponse) {
         model.addAttribute("messageType", messageResponse.getResponse());
@@ -85,5 +92,19 @@ public class ControllerUtils {
         } else {
             return IntStream.rangeClosed(1, totalPages).toArray();
         }
+    }
+
+
+    public void addPagination(Model model,Page<Bijoux> bijoux) {
+        // TODO document why this method is empty
+        model.addAttribute("pagination", computePagination(bijoux));
+        model.addAttribute("page", bijoux);
+        addPagination(model, bijoux);
+
+    }
+
+    public void addPagination(SearchRequest request, Model model, Page<Bijoux> bijoux) {
+        model.addAttribute("searchRequest", searchRequest);
+        addPagination(model, (Page<Order>) page);
     }
 }

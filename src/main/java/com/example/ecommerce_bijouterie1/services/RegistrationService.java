@@ -1,7 +1,8 @@
-package com.gmail.merikbest2015.ecommerce.service;
+package com.example.ecommerce_bijouterie1.services;
 
-import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
-import com.gmail.merikbest2015.ecommerce.dto.request.UserRequest;
+
+import com.example.ecommerce_bijouterie1.dto.request.UserRequest;
+import com.example.ecommerce_bijouterie1.dto.response.MessageResponse;
 
 public interface RegistrationService {
 

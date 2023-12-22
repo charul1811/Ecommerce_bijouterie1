@@ -1,17 +1,18 @@
-package com.gmail.merikbest2015.ecommerce.service.impl;
+package com.example.ecommerce_bijouterie1.services.impl;
 
-import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
-import com.gmail.merikbest2015.ecommerce.constants.SuccessMessage;
-import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.dto.request.ChangePasswordRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.EditUserRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
-import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
-import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
-import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
-import com.gmail.merikbest2015.ecommerce.security.UserPrincipal;
-import com.gmail.merikbest2015.ecommerce.service.UserService;
+
+import com.example.ecommerce_bijouterie1.constants.ErrorMessage;
+import com.example.ecommerce_bijouterie1.constants.SuccessMessage;
+import com.example.ecommerce_bijouterie1.dto.request.ChangePasswordRequest;
+import com.example.ecommerce_bijouterie1.dto.request.EditUserRequest;
+import com.example.ecommerce_bijouterie1.dto.request.SearchRequest;
+import com.example.ecommerce_bijouterie1.dto.response.MessageResponse;
+import com.example.ecommerce_bijouterie1.entities.Order;
+import com.example.ecommerce_bijouterie1.entities.User;
+import com.example.ecommerce_bijouterie1.repositories.OrderRepository;
+import com.example.ecommerce_bijouterie1.repositories.UserRepository;
+import com.example.ecommerce_bijouterie1.security.UserPrincipal;
+import com.example.ecommerce_bijouterie1.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,10 +29,15 @@ public class UserServiceImpl implements UserService {
     private final OrderRepository orderRepository;
     private final PasswordEncoder passwordEncoder;
 
-    @Override
     public User getAuthenticatedUser() {
         UserPrincipal principal = (UserPrincipal) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         return userRepository.findByEmail(principal.getUsername());
+    }
+
+    @Override
+    public Page<Order> searchUserOrders() {
+        User user = getAuthenticatedUser();
+        return orderRepository.searchUserOrders(user.getId(), request.getSearchType(), request.getText(), pageable);
     }
 
     @Override

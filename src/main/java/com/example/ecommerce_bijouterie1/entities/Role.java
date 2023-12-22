@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.domain;
+package com.example.ecommerce_bijouterie1.entities;
 
 import org.springframework.security.core.GrantedAuthority;
 

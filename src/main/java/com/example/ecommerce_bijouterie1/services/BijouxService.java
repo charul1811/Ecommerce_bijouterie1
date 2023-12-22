@@ -1,19 +1,21 @@
 package com.example.ecommerce_bijouterie1.services;
 
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
+
+import com.example.ecommerce_bijouterie1.dto.request.SearchRequest;
+import com.example.ecommerce_bijouterie1.entities.Bijoux;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
 import java.util.List;
 
-public interface PerfumeService {
+public interface BijouxService {
 
-    Perfume getPerfumeById(Long perfumeId);
+    Bijoux getBijouxById(Long bijouxId);
 
-    List<Perfume> getPopularPerfumes();
+    List<Bijoux> getPopularBijouxs();
 
-    Page<Perfume> getPerfumesByFilterParams(SearchRequest searchRequest, Pageable pageable);
+    Page<Bijoux> getBijouxByFilterParams(SearchRequest searchRequest, Pageable pageable);
 
-    Page<Perfume> searchPerfumes(SearchRequest searchRequest, Pageable pageable);
+    Page<Bijoux> searchBijouxs(SearchRequest searchRequest, Pageable pageable);
+    Bijoux getBijouxByType(String bijouType);
 }

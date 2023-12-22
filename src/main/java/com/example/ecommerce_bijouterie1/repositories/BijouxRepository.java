@@ -1,6 +1,7 @@
 package com.example.ecommerce_bijouterie1.repositories;
 
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
+
+import com.example.ecommerce_bijouterie1.entities.Bijoux;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,31 +9,32 @@ import org.springframework.data.jpa.repository.Query;
 
 import java.util.List;
 
-public interface PerfumeRepository extends JpaRepository<Perfume, Long> {
+public interface BijouxRepository extends JpaRepository<Bijoux, Long> {
 
-    List<Perfume> findByIdIn(List<Long> perfumesIds);
+    List<Bijoux> findByIdIn(List<Long> bijouxsIds);
 
-    Page<Perfume> findAllByOrderByPriceAsc(Pageable pageable);
+    Page<Bijoux> findAllByOrderByPriceAsc(Pageable pageable);
 
-    @Query("SELECT perfume FROM Perfume perfume WHERE " +
+    @Query("SELECT bijoux FROM Bijoux bijoux WHERE " +
             "(CASE " +
-            "   WHEN :searchType = 'perfumeTitle' THEN UPPER(perfume.perfumeTitle) " +
-            "   WHEN :searchType = 'country' THEN UPPER(perfume.country) " +
-            "   ELSE UPPER(perfume.perfumer) " +
+            "   WHEN :searchType = 'bijouxTitle' THEN UPPER(bijoux.bijouTitle) " +
+            "   WHEN :searchType = 'country' THEN UPPER(bijoux.country) " +
+            "   ELSE UPPER(bijoux.bijouMetal) " +
             "END) " +
             "LIKE UPPER(CONCAT('%',:text,'%')) " +
-            "ORDER BY perfume.price ASC")
-    Page<Perfume> searchPerfumes(String searchType, String text, Pageable pageable);
+            "ORDER BY bijoux.price ASC")
+    Page<Bijoux> searchBijouxs(String searchType, String text, Pageable pageable);
 
-    @Query("SELECT perfume FROM Perfume perfume " +
-            "WHERE (coalesce(:perfumers, null) IS NULL OR perfume.perfumer IN :perfumers) " +
-            "AND (coalesce(:genders, null) IS NULL OR perfume.perfumeGender IN :genders) " +
-            "AND (coalesce(:priceStart, null) IS NULL OR perfume.price BETWEEN :priceStart AND :priceEnd) " +
-            "ORDER BY perfume.price ASC")
-    Page<Perfume> getPerfumesByFilterParams(
-            List<String> perfumers,
-            List<String> genders,
+    @Query("SELECT bijoux FROM Bijoux bijoux " +
+            "WHERE (coalesce(:bijouxrs, null) IS NULL OR bijoux.bijouMetal IN :bijoux) " +
+            "AND (coalesce(:genders, null) IS NULL OR bijoux.bijouType IN :type) " +
+            "AND (coalesce(:priceStart, null) IS NULL OR bijoux.price BETWEEN :priceStart AND :priceEnd) " +
+            "ORDER BY bijoux.price ASC")
+    Page<Bijoux> getBijouxByFilterParams(
+            List<String> bijouxMetal,
+            List<String> types,
             Integer priceStart,
             Integer priceEnd,
             Pageable pageable);
+
 }

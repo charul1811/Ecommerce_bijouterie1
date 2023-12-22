@@ -1,6 +1,7 @@
-package com.gmail.merikbest2015.ecommerce.repository;
+package com.example.ecommerce_bijouterie1.repositories;
 
-import com.gmail.merikbest2015.ecommerce.domain.User;
+
+import com.example.ecommerce_bijouterie1.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
@@ -19,6 +20,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     @EntityGraph(attributePaths = "roles")
     User findByActivationCode(String code);
+
 
     @Query("SELECT user.email FROM User user WHERE user.passwordResetCode = :code")
     Optional<String> getEmailByPasswordResetCode(String code);

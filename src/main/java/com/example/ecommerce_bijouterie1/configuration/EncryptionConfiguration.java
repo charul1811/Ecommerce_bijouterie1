@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.configuration;
+package com.example.ecommerce_bijouterie1.configuration;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

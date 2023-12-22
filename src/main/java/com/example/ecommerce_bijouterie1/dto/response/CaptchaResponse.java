@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.dto.response;
+package com.example.ecommerce_bijouterie1.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonAlias;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

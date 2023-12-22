@@ -1,4 +1,5 @@
-package com.gmail.merikbest2015.ecommerce.configuration;
+package com.example.ecommerce_bijouterie1.configuration;
+
 
 import org.modelmapper.ModelMapper;
 import org.modelmapper.convention.MatchingStrategies;

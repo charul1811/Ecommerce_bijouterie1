@@ -1,37 +1,39 @@
-package com.gmail.merikbest2015.ecommerce.service;
+package com.example.ecommerce_bijouterie1.services;
 
-import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.dto.request.PerfumeRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
-import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
-import com.gmail.merikbest2015.ecommerce.dto.response.UserInfoResponse;
+
+import com.example.ecommerce_bijouterie1.dto.request.BijouxRequest;
+import com.example.ecommerce_bijouterie1.dto.request.SearchRequest;
+import com.example.ecommerce_bijouterie1.dto.response.MessageResponse;
+import com.example.ecommerce_bijouterie1.dto.response.UserInfoResponse;
+import com.example.ecommerce_bijouterie1.entities.Bijoux;
+import com.example.ecommerce_bijouterie1.entities.Order;
+import com.example.ecommerce_bijouterie1.entities.User;
+
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.web.multipart.MultipartFile;
 
 public interface AdminService {
 
-    Page<Perfume> getPerfumes(Pageable pageable);
+    Page<Bijoux> getBijoux(Pageable pageable);
 
-    Page<Perfume> searchPerfumes(SearchRequest request, Pageable pageable);
+    Page<Bijoux> searchBijoux(SearchRequest request, Pageable pageable);
 
     Page<User> getUsers(Pageable pageable);
 
     Page<User> searchUsers(SearchRequest request, Pageable pageable);
 
-    Order getOrder(Long orderId);
+    Object getOrder(Long orderId);
 
     Page<Order> getOrders(Pageable pageable);
 
     Page<Order> searchOrders(SearchRequest request, Pageable pageable);
 
-    Perfume getPerfumeById(Long perfumeId);
+    Bijoux getBijouxById(Long bijouxId);
 
-    MessageResponse editPerfume(PerfumeRequest perfumeRequest, MultipartFile file);
+    MessageResponse editBijoux(BijouxRequest bijouxRequest, MultipartFile file);
 
-    MessageResponse addPerfume(PerfumeRequest perfumeRequest, MultipartFile file);
+    MessageResponse addBijoux(BijouxRequest bijouxRequest, MultipartFile file);
 
     UserInfoResponse getUserById(Long userId, Pageable pageable);
 }

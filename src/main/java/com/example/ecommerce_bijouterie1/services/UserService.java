@@ -1,11 +1,12 @@
-package com.gmail.merikbest2015.ecommerce.service;
+package com.example.ecommerce_bijouterie1.services;
 
-import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.dto.request.ChangePasswordRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.EditUserRequest;
-import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
-import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
+
+import com.example.ecommerce_bijouterie1.dto.request.ChangePasswordRequest;
+import com.example.ecommerce_bijouterie1.dto.request.EditUserRequest;
+import com.example.ecommerce_bijouterie1.dto.request.SearchRequest;
+import com.example.ecommerce_bijouterie1.dto.response.MessageResponse;
+import com.example.ecommerce_bijouterie1.entities.Order;
+import com.example.ecommerce_bijouterie1.entities.User;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 

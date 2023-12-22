@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.service.impl;
+package com.example.ecommerce_bijouterie1.services.impl;
 
 import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import com.gmail.merikbest2015.ecommerce.constants.SuccessMessage;

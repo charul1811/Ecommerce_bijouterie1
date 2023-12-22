@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.constants;
+package com.example.ecommerce_bijouterie1.constants;
 
 public class Pages {
     public static final String ADMIN_PERFUMES = "admin-perfumes";
@@ -25,4 +25,5 @@ public class Pages {
     public static final String REGISTRATION = "registration";
     public static final String ERROR_404 = "error-404";
     public static final String ERROR_500 = "error-500";
+    public static final String ADMIN_BIJOUX ="admin-bijoux" ;
 }

@@ -1,11 +1,12 @@
-package com.gmail.merikbest2015.ecommerce.controller;
+package com.example.ecommerce_bijouterie1.controllers;
 
-import com.gmail.merikbest2015.ecommerce.constants.Pages;
-import com.gmail.merikbest2015.ecommerce.constants.PathConstants;
-import com.gmail.merikbest2015.ecommerce.dto.request.PasswordResetRequest;
-import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
-import com.gmail.merikbest2015.ecommerce.service.AuthenticationService;
-import com.gmail.merikbest2015.ecommerce.utils.ControllerUtils;
+
+import com.example.ecommerce_bijouterie1.constants.Pages;
+import com.example.ecommerce_bijouterie1.constants.PathConstants;
+import com.example.ecommerce_bijouterie1.dto.request.PasswordResetRequest;
+import com.example.ecommerce_bijouterie1.dto.response.MessageResponse;
+import com.example.ecommerce_bijouterie1.services.AuthenticationService;
+import com.example.ecommerce_bijouterie1.utils.ControllerUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.dto.request;
+package com.example.ecommerce_bijouterie1.dto.request;
 
 import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import lombok.Data;

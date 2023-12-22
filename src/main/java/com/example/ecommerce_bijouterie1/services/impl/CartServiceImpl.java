@@ -1,8 +1,8 @@
-package com.gmail.merikbest2015.ecommerce.service.impl;
+package com.example.ecommerce_bijouterie1.services.impl;
 
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
+import com.gmail.merikbest2015.ecommerce.domain.Bijoux;
 import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.repository.PerfumeRepository;
+import com.gmail.merikbest2015.ecommerce.repository.BijouxRepository;
 import com.gmail.merikbest2015.ecommerce.service.CartService;
 import com.gmail.merikbest2015.ecommerce.service.UserService;
 import lombok.RequiredArgsConstructor;
@@ -16,27 +16,27 @@ import java.util.List;
 public class CartServiceImpl implements CartService {
 
     private final UserService userService;
-    private final PerfumeRepository perfumeRepository;
+    private final BijouxRepository bijouxRepository;
 
     @Override
-    public List<Perfume> getPerfumesInCart() {
+    public List<Bijoux> getBijouxsInCart() {
         User user = userService.getAuthenticatedUser();
-        return user.getPerfumeList();
+        return user.getBijouxList();
     }
 
     @Override
     @Transactional
-    public void addPerfumeToCart(Long perfumeId) {
+    public void addBijouxToCart(Long bijouxId) {
         User user = userService.getAuthenticatedUser();
-        Perfume perfume = perfumeRepository.getOne(perfumeId);
-        user.getPerfumeList().add(perfume);
+        Bijoux bijoux = bijouxRepository.getOne(bijouxId);
+        user.getBijouxList().add(bijoux);
     }
 
     @Override
     @Transactional
-    public void removePerfumeFromCart(Long perfumeId) {
+    public void removeBijouxFromCart(Long bijouxId) {
         User user = userService.getAuthenticatedUser();
-        Perfume perfume = perfumeRepository.getOne(perfumeId);
-        user.getPerfumeList().remove(perfume);
+        Bijoux bijoux = bijouxRepository.getOne(bijouxId);
+        user.getBijouxList().remove(bijoux);
     }
 }

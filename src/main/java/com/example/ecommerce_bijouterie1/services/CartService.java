@@ -1,12 +1,12 @@
-package com.gmail.merikbest2015.ecommerce.service;
+package com.example.ecommerce_bijouterie1.services;
 
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
+import com.example.ecommerce_bijouterie1.entities.Bijoux;
 
 import java.util.List;
 
 public interface CartService {
 
-    List<Perfume> getPerfumesInCart();
+    List<Bijoux> getPerfumesInCart();
 
     void addPerfumeToCart(Long perfumeId);
 

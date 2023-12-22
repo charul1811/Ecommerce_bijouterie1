@@ -1,7 +1,8 @@
-package com.gmail.merikbest2015.ecommerce.security;
+package com.example.ecommerce_bijouterie1.security;
 
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
+
+import com.example.ecommerce_bijouterie1.entities.User;
+import com.example.ecommerce_bijouterie1.repositories.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.LockedException;
 import org.springframework.security.core.userdetails.UserDetails;

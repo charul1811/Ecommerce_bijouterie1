@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.constants;
+package com.example.ecommerce_bijouterie1.constants;
 
 public class ErrorMessage {
     public static final String CAPTCHA_ERROR = "Fill captcha";
@@ -8,7 +8,7 @@ public class ErrorMessage {
     public static final String INVALID_PASSWORD_CODE = "Password reset code is invalid!";
     public static final String ACTIVATION_CODE_NOT_FOUND = "Activation code not found.";
     public static final String ORDER_NOT_FOUND = "Order not found.";
-    public static final String PERFUME_NOT_FOUND = "Perfume not found.";
+    public static final String Bijoux_NOT_FOUND = "Bijoux not found.";
     public static final String USER_NOT_FOUND = "User not found.";
     public static final String EMPTY_FIRST_NAME = "First name cannot be empty";
     public static final String EMPTY_LAST_NAME = "Last name cannot be empty";

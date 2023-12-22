@@ -1,6 +1,7 @@
-package com.gmail.merikbest2015.ecommerce.security;
+package com.example.ecommerce_bijouterie1.security;
 
-import com.gmail.merikbest2015.ecommerce.domain.User;
+
+import com.example.ecommerce_bijouterie1.entities.User;
 import lombok.Data;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;

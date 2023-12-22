@@ -1,16 +1,16 @@
-package com.gmail.merikbest2015.ecommerce.service.impl;
+package com.example.ecommerce_bijouterie1.services.impl;
 
 import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
 import com.gmail.merikbest2015.ecommerce.constants.SuccessMessage;
 import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
+import com.gmail.merikbest2015.ecommerce.domain.Bijoux;
 import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.dto.request.PerfumeRequest;
+import com.gmail.merikbest2015.ecommerce.dto.request.BijouxRequest;
 import com.gmail.merikbest2015.ecommerce.dto.request.SearchRequest;
 import com.gmail.merikbest2015.ecommerce.dto.response.MessageResponse;
 import com.gmail.merikbest2015.ecommerce.dto.response.UserInfoResponse;
 import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
-import com.gmail.merikbest2015.ecommerce.repository.PerfumeRepository;
+import com.gmail.merikbest2015.ecommerce.repository.BijouxRepository;
 import com.gmail.merikbest2015.ecommerce.repository.UserRepository;
 import com.gmail.merikbest2015.ecommerce.service.AdminService;
 import lombok.RequiredArgsConstructor;
@@ -37,18 +37,18 @@ public class AdminServiceImpl implements AdminService {
     private String uploadPath;
 
     private final UserRepository userRepository;
-    private final PerfumeRepository perfumeRepository;
+    private final BijouxRepository bijouxRepository;
     private final OrderRepository orderRepository;
     private final ModelMapper modelMapper;
 
     @Override
-    public Page<Perfume> getPerfumes(Pageable pageable) {
-        return perfumeRepository.findAllByOrderByPriceAsc(pageable);
+    public Page<Bijoux> getBijouxs(Pageable pageable) {
+        return bijouxRepository.findAllByOrderByPriceAsc(pageable);
     }
 
     @Override
-    public Page<Perfume> searchPerfumes(SearchRequest request, Pageable pageable) {
-        return perfumeRepository.searchPerfumes(request.getSearchType(), request.getText(), pageable);
+    public Page<Bijoux> searchBijouxs(SearchRequest request, Pageable pageable) {
+        return bijouxRepository.searchBijouxs(request.getSearchType(), request.getText(), pageable);
     }
 
     @Override
@@ -62,7 +62,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Order getOrder(Long orderId) {
+    public Object getOrder(Long orderId) {
         return orderRepository.getById(orderId)
                 .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ErrorMessage.ORDER_NOT_FOUND));
     }
@@ -79,23 +79,23 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override
-    public Perfume getPerfumeById(Long perfumeId) {
-        return perfumeRepository.findById(perfumeId)
-                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ErrorMessage.PERFUME_NOT_FOUND));
+    public Bijoux getBijouxById(Long bijouxId) {
+        return bijouxRepository.findById(bijouxId)
+                .orElseThrow(() -> new ResponseStatusException(HttpStatus.NOT_FOUND, ErrorMessage.Bijoux_NOT_FOUND));
     }
 
     @Override
     @SneakyThrows
     @Transactional
-    public MessageResponse editPerfume(PerfumeRequest perfumeRequest, MultipartFile file) {
-        return savePerfume(perfumeRequest, file, SuccessMessage.PERFUME_EDITED);
+    public MessageResponse editBijoux(BijouxRequest bijouxRequest, MultipartFile file) {
+        return saveBijoux(bijouxRequest, file, SuccessMessage.Bijoux_EDITED);
     }
 
     @Override
     @SneakyThrows
     @Transactional
-    public MessageResponse addPerfume(PerfumeRequest perfumeRequest, MultipartFile file) {
-        return savePerfume(perfumeRequest, file, SuccessMessage.PERFUME_ADDED);
+    public MessageResponse addBijoux(BijouxRequest bijouxRequest, MultipartFile file) {
+        return saveBijoux(bijouxRequest, file, SuccessMessage.Bijoux_ADDED);
     }
 
     @Override
@@ -106,8 +106,8 @@ public class AdminServiceImpl implements AdminService {
         return new UserInfoResponse(user, orders);
     }
 
-    private MessageResponse savePerfume(PerfumeRequest perfumeRequest, MultipartFile file, String message) throws IOException {
-        Perfume perfume = modelMapper.map(perfumeRequest, Perfume.class);
+    private MessageResponse saveBijoux(BijouxRequest bijouxRequest, MultipartFile file, String message) throws IOException {
+        Bijoux bijoux = modelMapper.map(bijouxRequest, Bijoux.class);
         if (file != null && !file.getOriginalFilename().isEmpty()) {
             File uploadDir = new File(uploadPath);
 
@@ -117,9 +117,9 @@ public class AdminServiceImpl implements AdminService {
             String uuidFile = UUID.randomUUID().toString();
             String resultFilename = uuidFile + "." + file.getOriginalFilename();
             file.transferTo(new File(uploadPath + "/" + resultFilename));
-            perfume.setFilename(resultFilename);
+            bijoux.setFilename(resultFilename);
         }
-        perfumeRepository.save(perfume);
+        bijouxRepository.save(bijoux);
         return new MessageResponse("alert-success", message);
     }
 }

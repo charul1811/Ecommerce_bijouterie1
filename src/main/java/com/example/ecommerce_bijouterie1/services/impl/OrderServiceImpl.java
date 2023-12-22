@@ -1,13 +1,14 @@
-package com.gmail.merikbest2015.ecommerce.service.impl;
+package com.example.ecommerce_bijouterie1.services.impl;
 
-import com.gmail.merikbest2015.ecommerce.constants.ErrorMessage;
-import com.gmail.merikbest2015.ecommerce.domain.Order;
-import com.gmail.merikbest2015.ecommerce.domain.Perfume;
-import com.gmail.merikbest2015.ecommerce.domain.User;
-import com.gmail.merikbest2015.ecommerce.dto.request.OrderRequest;
-import com.gmail.merikbest2015.ecommerce.repository.OrderRepository;
-import com.gmail.merikbest2015.ecommerce.service.OrderService;
-import com.gmail.merikbest2015.ecommerce.service.UserService;
+
+import com.example.ecommerce_bijouterie1.constants.ErrorMessage;
+import com.example.ecommerce_bijouterie1.dto.request.OrderRequest;
+import com.example.ecommerce_bijouterie1.entities.Bijoux;
+import com.example.ecommerce_bijouterie1.entities.Order;
+import com.example.ecommerce_bijouterie1.entities.User;
+import com.example.ecommerce_bijouterie1.repositories.OrderRepository;
+import com.example.ecommerce_bijouterie1.services.OrderService;
+import com.example.ecommerce_bijouterie1.services.UserService;
 import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
@@ -38,9 +39,9 @@ public class OrderServiceImpl implements OrderService {
     }
 
     @Override
-    public List<Perfume> getOrdering() {
+    public List<Bijoux> getOrdering() {
         User user = userService.getAuthenticatedUser();
-        return user.getPerfumeList();
+        return user.getBijouxList();
     }
 
     @Override
@@ -49,14 +50,25 @@ public class OrderServiceImpl implements OrderService {
         return orderRepository.findOrderByUserId(user.getId(), pageable);
     }
 
+
+
+
+    @Override
+    public Order createOrder(List<Bijoux> bijoux) {
+
+        Order order=new Order();
+        order.AddtoShoppingCart();
+        return order;
+    }
+
     @Override
     @Transactional
     public Long postOrder(User user, OrderRequest orderRequest) {
         Order order = modelMapper.map(orderRequest, Order.class);
         order.setUser(user);
-        order.getPerfumes().addAll(user.getPerfumeList());
+        order.getBijouxs().addAll(user.getBijouxList());
         orderRepository.save(order);
-        user.getPerfumeList().clear();
+        user.getBijouxList().clear();
         Map<String, Object> attributes = new HashMap<>();
         attributes.put("order", order);
         mailService.sendMessageHtml(order.getEmail(), "Order #" + order.getId(), "order-template", attributes);

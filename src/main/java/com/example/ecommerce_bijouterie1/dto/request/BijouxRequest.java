@@ -11,7 +11,7 @@ import javax.validation.constraints.NotNull;
 
 @Data
 @ToString
-public class PerfumeRequest {
+public class BijouxRequest {
     private Long id;
 
     @NotBlank(message = ErrorMessage.FILL_IN_THE_INPUT_FIELD)

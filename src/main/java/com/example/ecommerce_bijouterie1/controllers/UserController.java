@@ -1,4 +1,4 @@
-package com.gmail.merikbest2015.ecommerce.controller;
+package com.example.ecommerce_bijouterie1.controllers;
 
 import com.gmail.merikbest2015.ecommerce.constants.Pages;
 import com.gmail.merikbest2015.ecommerce.constants.PathConstants;
